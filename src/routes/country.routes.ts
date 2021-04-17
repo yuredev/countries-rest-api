@@ -1,19 +1,45 @@
 import { Router } from 'express';
+import { CountryModel, ICountry } from '../models/country';
 
-const userRoutes = Router();
+const routes = Router();
 
-userRoutes.get('/', async (req, res) => {
-  return res.json();
+routes.get('/', async (req, res) => {
+  try {
+    const countries: ICountry[] = await CountryModel.find(); 
+    return res.json(countries);
+  } catch (error) {
+    console.error(error);
+    return res.status(403).json({ error: 'It seems that something went wrong with your request' });
+  }
 });
 
-userRoutes.post('/', async (req, res) => {
+routes.post('/', async (req, res) => {
+  try {
+    const { name, capital, currency, language, population, area } = req.body;
 
+    const countryFound = await CountryModel.findOne({ name });
+
+    if (countryFound) {
+      return res.status(409).json({ error: 'There are another country with this name' })
+    }
+
+    const countryCreated = await CountryModel.create({
+      name,
+      capital,
+      currency,
+      language,
+      population,
+      area,
+    });
+    return res.status(201).json(countryCreated);
+  } catch (error) {
+    console.error(error);
+    return res.status(403).json({ error: 'It seems that something went wrong with your request' });
+  }
 });
 
-userRoutes.put('/:countryId', (req, res) => {
+routes.put('/:countryId', (req, res) => {});
 
-});
+routes.delete('/:countryId', (req, res) => {});
 
-userRoutes.delete('/:countryId', (req, res) => {
-
-});
+export default routes;

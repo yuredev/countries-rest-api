@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('localhost:27018/, ', {
+mongoose.connect('mongodb://localhost:27018/countries', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -10,7 +10,6 @@ mongoose.connect('localhost:27018/, ', {
 const database = mongoose.connection;
 
 database.on('error', console.error.bind(console, 'connection error'));
-database.once('open', () => console.log('mongodb connected'));
+database.once('open', () => console.log('✅️ mongodb connected successfully'));
 
 mongoose.Promise = Promise;
-export default mongoose;
