@@ -19,13 +19,20 @@ routes.get('/', async (req, res) => {
 routes.get('/:countryId', async (req, res) => {
   try {
     const { countryId } = req.params;
-    const country = await CountryModel.findById(countryId);
-    if (!country) {
+    let countryFound: ICountry | null;
+    try {
+      countryFound = await CountryModel.findById(countryId).exec();
+      if (!countryFound) {
+        return res
+          .status(404)
+          .json({ error: `No country found with the id: ${countryId}` });
+      }
+    } catch (error) {
       return res
         .status(404)
         .json({ error: `No country found with the id: ${countryId}` });
     }
-    return res.json(country);
+    return res.json(countryFound);
   } catch (error) {
     console.error(error);
     return res
@@ -59,28 +66,69 @@ routes.post('/', validateCountryBodyParams, async (req, res) => {
 });
 
 routes.put('/:countryId', validateCountryBodyParams, async (req, res) => {
+  const { countryId } = req.params;
   try {
     const country: ICountry = req.res?.locals.country;
-    const { countryId } = req.params;
     if (!countryId) {
       return res.status(403).json({ error: 'Missing country id param' });
     }
-    const countryFound = await CountryModel.findById(countryId).exec();
 
-    if (!countryFound) {
+    let countryFound: ICountry | null;
+    try {
+      countryFound = await CountryModel.findById(countryId).exec();
+      if (!countryFound) {
+        return res
+          .status(404)
+          .json({ error: `No country found with the id: ${countryId}` });
+      }
+    } catch (error) {
       return res
         .status(404)
         .json({ error: `No country found with the id: ${countryId}` });
     }
 
-    countryFound.update(country);
+    await countryFound.update(country, {
+      new: true,
+    });
+
+    return res.status(200).json({ message: 'Successfully updated' });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(404)
+      .json({ error: `No country found with the id: ${countryId}` });
+  }
+});
+
+routes.delete('/:countryId', async (req, res) => {
+  try {
+    const { countryId } = req.params;
+    if (!countryId) {
+      return res.status(403).json({ error: 'Missing country id param' });
+    }
+
+    let countryFound: ICountry | null;
+    try {
+      countryFound = await CountryModel.findById(countryId).exec();
+      if (!countryFound) {
+        return res
+          .status(404)
+          .json({ error: `No country found with the id: ${countryId}` });
+      }
+    } catch (error) {
+      return res
+        .status(404)
+        .json({ error: `No country found with the id: ${countryId}` });
+    }
+
+    const countryDeleted: ICountry = await countryFound.delete();
+
+    return res.status(200).json(countryDeleted);
   } catch (error) {
     return res
       .status(403)
       .json({ error: 'It seems that something is wrong in the request' });
   }
 });
-
-routes.delete('/:countryId', (req, res) => {});
 
 export default routes;

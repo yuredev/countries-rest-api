@@ -1,4 +1,3 @@
-import '../database/index';
 import { model, Schema, Document } from 'mongoose';
 
 interface ICountry extends Document {

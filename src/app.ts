@@ -1,3 +1,4 @@
+import './database';
 import express from 'express';
 import countryRoutes from './routes/country.routes';
 const app = express();
