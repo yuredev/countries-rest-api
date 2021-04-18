@@ -36,7 +36,7 @@ https://tads-countries-api.herokuapp.com/countries/
 ## Updating countries:
 
 ```
-https://tads-countries-api.herokuapp.com/countries/
+https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
 ```
 
 
