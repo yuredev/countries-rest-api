@@ -2,13 +2,13 @@
 
 A Simple countries REST API, build for learning purposes
 
-## Getting countries
+## Getting countries:
 
 ```
 https://tads-countries-api.herokuapp.com/countries/
 ```
 
-## Getting a single country
+## Getting a single country:
 
 ```
 https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
@@ -50,7 +50,7 @@ https://tads-countries-api.herokuapp.com/countries/
   "area": 8000000
 }
 ```
-## Deleting countries
+## Deleting countries:
 
 ```
 https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
