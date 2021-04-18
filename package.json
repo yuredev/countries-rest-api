@@ -9,9 +9,8 @@
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules ./src/app.ts",
     "build": "tsc",
-    "run": "node ./dist/app.js",
-    "tsc": "tsc",
-    "postinstall": "yarn tsc"
+    "postinstall": "npm run build",
+    "start": "node ./dist/app.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
