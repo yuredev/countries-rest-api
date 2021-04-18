@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost:27018/countries', {
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27018/countries', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
