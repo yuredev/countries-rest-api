@@ -10,7 +10,8 @@
     "dev": "ts-node-dev --ignore-watch node_modules ./src/app.ts",
     "build": "tsc",
     "run": "node ./dist/app.js",
-    "postinstall": "tsc"
+    "tsc": "tsc",
+    "postinstall": "yarn tsc"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
