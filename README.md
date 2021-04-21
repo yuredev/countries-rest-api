@@ -5,20 +5,20 @@ A Simple countries REST API, build for learning purposes
 ## Getting countries:
 
 ```
-https://tads-countries-api.herokuapp.com/countries/
+GET https://tads-countries-api.herokuapp.com/countries/
 ```
 
 ## Getting a single country:
 
 ```
-https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
+GET https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
 ```
 
 ## Creating countries:
 
 
 ```
-https://tads-countries-api.herokuapp.com/countries/
+POST https://tads-countries-api.herokuapp.com/countries/
 ```
 
 
@@ -36,7 +36,7 @@ https://tads-countries-api.herokuapp.com/countries/
 ## Updating countries:
 
 ```
-https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
+PUT https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
 ```
 
 
@@ -53,5 +53,5 @@ https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
 ## Deleting countries:
 
 ```
-https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
+DELETE https://tads-countries-api.herokuapp.com/countries/607ba400ad235865fe8130dd
 ```
